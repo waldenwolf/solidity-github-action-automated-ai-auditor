@@ -1,4 +1,5 @@
 import { setFailed } from '@actions/core';
+import { context } from '@actions/github';
 
 import { prepare } from './prepare.js';
 import { performAudit } from './performAudit.js';
