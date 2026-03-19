@@ -17,10 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0   # ensures we get full history + your audit.js
-
-      - name: 🔍 Debug – List all files in root
-        run: ls -la
+          fetch-depth: 0 
 
       - name: Setup Node.js 24
         uses: actions/setup-node@v6
@@ -35,4 +32,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node auditor.js
+        run: node scripts/auditor/run.js
