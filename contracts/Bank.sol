@@ -9,15 +9,15 @@ contract Bank {
         balances[msg.sender] += msg.value;
     }
 
-    /// @notice Withdraw ETH (SAFE version - uses Checks-Effects-Interactions)
+    /// @notice Withdraw ETH
     function withdraw(uint256 amount) external {
         require(balances[msg.sender] >= amount, "Insufficient balance");
 
-        // ✅ Checks-Effects-Interactions pattern
-        balances[msg.sender] -= amount;
-
+        // External call happens BEFORE balance is updated (reentrancy)
         (bool success, ) = msg.sender.call{value: amount}("");
         require(success, "ETH transfer failed");
+
+        balances[msg.sender] -= amount;
     }
 
     function getContractBalance() external view returns (uint256) {
