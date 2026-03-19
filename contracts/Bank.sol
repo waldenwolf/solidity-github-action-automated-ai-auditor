@@ -13,7 +13,7 @@ contract Bank {
     function withdraw(uint256 amount) external {
         require(balances[msg.sender] >= amount, "Insufficient balance");
 
-        // External call happens BEFORE balance is updated (reentrancy)
+        // External call happens BEFORE balance is updated
         (bool success, ) = msg.sender.call{value: amount}("");
         require(success, "ETH transfer failed");
 
