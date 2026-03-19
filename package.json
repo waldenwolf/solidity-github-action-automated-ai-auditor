@@ -1,0 +1,25 @@
+{
+  "name": "solidity-github-action-automated-ai-auditor",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/waldenwolf/solidity-github-action-automated-ai-auditor#readme",
+  "bugs": {
+    "url": "https://github.com/waldenwolf/solidity-github-action-automated-ai-auditor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waldenwolf/solidity-github-action-automated-ai-auditor.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "auditor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.0",
+    "@actions/github": "^6.0.0",
+    "@anthropic-ai/sdk": "^0.33.0"
+  }
+}
