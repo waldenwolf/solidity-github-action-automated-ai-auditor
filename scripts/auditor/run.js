@@ -14,8 +14,14 @@ export async function run() {
           return;
         }
         const { contextText, octokit, owner, repo, prNumber, agent } = await prepare();
+        console.log(contextText);
+        console.log(owner);
+        console.log(repo);
+        console.log(prNumber);
         const auditReport = await performAudit(agent, contextText);
+        console.log(auditReport);
         const summaryReport = await performSummary(agent, auditReport);
+        console.log(summaryReport);
         await postCommentOnPR(octokit, owner, repo, prNumber, summaryReport);
 
 
