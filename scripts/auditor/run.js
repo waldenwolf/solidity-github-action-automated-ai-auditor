@@ -1,4 +1,5 @@
-import { setFailed } from '@actions/core';
+import { setFailed, info } from '@actions/core';
+import { context } from '@actions/github';
 
 import { prepare } from './prepare.js';
 import { performAudit } from './performAudit.js';
@@ -9,7 +10,7 @@ export async function run() {
     try {
         const payload = context.payload;
         if (!payload.pull_request) {
-          core.info('Not a pull request event - skipping.');
+          info('Not a pull request event - skipping.');
           return;
         }
         const { contextText, octokit, owner, repo, prNumber, agent } = await prepare();
@@ -22,3 +23,5 @@ export async function run() {
         setFailed(`Audit failed: ${error.message}`);
     }
 }
+
+await run();

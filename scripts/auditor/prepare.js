@@ -62,6 +62,10 @@ export async function prepare() {
       contextText += `### File: ${file.filename}\n**Status:** ${file.status}\n\n**Prior version:**\n\`\`\`solidity\n${priorCode}\n\`\`\`\n\n**Diff:**\n\`\`\`diff\n${diff}\n\`\`\`\n\n---\n\n`;
     }
     result.contextText = contextText;
+    result.octokit = octokit;
+    result.owner = owner;
+    result.repo = repo;
+    result.prNumber = prNumber;
 
     result.agent = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY,
@@ -70,5 +74,6 @@ export async function prepare() {
     return result;
   } catch (error) {
     setFailed(`Audit failed: ${error.message}`);
+    return result;
   }
 }

@@ -16,8 +16,6 @@ export async function performSummary(agent, auditReport) {
     );
 
     const userPrompt = userPromptTemplate.replace('{{auditReport}}', auditReport);
-    console.log(systemPrompt);
-    console.log(userPrompt);
 
     // Run the agent with system prompt and user message
     const response = await agent.messages.create({
