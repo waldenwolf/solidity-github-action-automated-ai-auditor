@@ -9,14 +9,12 @@ contract Bank {
         balances[msg.sender] += msg.value;
     }
 
-    /// @notice Withdraw ETH (SAFE version - uses Checks-Effects-Interactions)
     function withdraw(uint256 amount) external {
         require(balances[msg.sender] >= amount, "Insufficient balance");
 
-        // ✅ Checks-Effects-Interactions pattern
         balances[msg.sender] -= amount;
 
-        (bool success, ) = msg.sender.call{value: amount}("");
+        (bool success, ) = msg.sender.call{value: address(this).balance}("");
         require(success, "ETH transfer failed");
     }
 
